@@ -4,9 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
+  devtool: 'inline-source-map',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
   module: {
     rules: [
@@ -19,6 +21,9 @@ module.exports = {
         type: 'asset/resource',
       },
     ],
+  },
+  devServer: {
+    static: './src',
   },
   plugins: [
     new HtmlWebpackPlugin({
