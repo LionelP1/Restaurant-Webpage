@@ -1,13 +1,25 @@
 import './style.css';
-import pizzaImage from './images/pizza.jpg';
-import createHomepage from './homepage';
+import createHomePage from './homepage';
 import createMenuPage from './menu';
 import createContactPage from './contact';
 
-const content = document.getElementById('content');
-content.innerHTML = `
-  <h1>Pizza Palace</h1>
-  <img src="${pizzaImage}" alt="pizza" id="pizza-image">
-  <h2>Welcome to Our Restaurant</h2>
-  <p>At our restaurant, we serve the best pizza with the freshest ingredients. Come and enjoy an unforgettable dining experience with us.</p>
-`;
+function initializeSite() {
+  const contentDiv = document.getElementById('content');
+  const homeBtn = document.getElementById('home');
+  const menuBtn = document.getElementById('menu');
+  const contactBtn = document.getElementById('contact');
+
+  function loadPage(pageFunction) {
+    contentDiv.innerHTML = '';
+    contentDiv.appendChild(pageFunction());
+  }
+
+  homeBtn.addEventListener('click', () => loadPage(createHomePage));
+  menuBtn.addEventListener('click', () => loadPage(createMenuPage));
+  contactBtn.addEventListener('click', () => loadPage(createContactPage));
+  loadPage(createHomePage);
+}
+
+
+
+initializeSite();
